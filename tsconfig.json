@@ -1,0 +1,34 @@
+{
+    "strict": true, /* Enable all strict type-checking options. */
+    "compilerOptions": {
+      "noImplicitAny": false, /* Raise error on expressions and declarations with an implied 'any' type. */
+      "emitDecoratorMetadata": true, /* Enables experimental support for emitting type metadata for decorators. */
+      "experimentalDecorators": true, /* Enables experimental support for ES7 decorators. */
+      "moduleResolution" : "node", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+      "module": "commonjs", /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+      "esModuleInterop": false, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+      "target": "es6", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+      "lib": [ /* Specify library files to be included in the compilation. */
+        "es2017"
+      ],
+      "types": [ /* Type declaration files to be included in compilation. */
+        "node"
+      ],
+      "paths": {
+        "@/*": ["src/*"]
+      },
+      "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */
+    },
+    "exclude": [
+    ],
+    "include": [
+      "src/**/*",
+      "node_modules/@types",
+      "@types",
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "@types",
+    ]
+  }
+  

@@ -1,0 +1,10 @@
+{
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "semi": true,
+  "printWidth": 100,
+  "importOrderParserPlugins": ["typescript", "classProperties", "decorators-legacy"],
+  "importOrder": ["^src/(.*)$", "^[./]", "^@[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}

@@ -1,0 +1,58 @@
+type Role {
+  id: Int
+  title: String
+  i18n: String
+  created_at: String
+  updated_at: String
+  created_since: String
+  userpermissions: [Userpermission]
+  users: [User]
+}
+
+type Userpermission {
+  id: Int
+  keymodule: String
+  permissions: Int
+}
+
+type Permission {
+  keymodule: String
+  permissions: Int
+}
+
+input RoleAdd {
+  title: String
+}
+
+input RolePatch {
+  title: String
+  users: ListInput
+  userpermissions: [Userpermissioninput]
+}
+
+input Userpermissioninput {
+  id: Int
+  keymodule: String
+  permissions: Int
+}
+
+type Mutation {
+  patchRole (
+    id: Int!
+    patch: RolePatch!
+  ): Role
+
+  addRole (
+    item: RoleAdd!
+  ): Role!
+
+  deleteRole(
+    id: Int!
+  ): Boolean
+}
+
+type Query {
+  role(id: Int!): Role
+  roles: [Role]
+  nroles: _Count
+}

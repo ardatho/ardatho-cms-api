@@ -1,0 +1,56 @@
+type User {
+  id: Int
+  firstname: String
+  lastname: String
+  email: String
+  password: String
+  status: Int
+  last_login_date: String
+  created_at: String
+  updated_at: String
+  created_since: String
+  permissions: [Permission]
+}
+
+input UserAdd {
+  firstname: String
+  lastname: String
+  email: String
+  password: String
+  confirmpassword: String
+  status: Int
+}
+
+input UserPatch {
+  firstname: String
+  lastname: String
+  email: String
+  password: String
+  confirmpassword: String
+  status: Int
+}
+
+type Mutation {
+  patchUser (
+    id: Int!
+    patch: UserPatch!
+  ): User
+
+  addUser (
+    item: UserAdd!
+  ): User!
+
+  deleteUser(
+    id: Int!
+  ): Boolean
+
+  login(username: String!, password: String!): String!
+  verify: String!
+}
+
+type Query {
+  me: User
+  user(id: Int!): User
+  users: [User]
+  nusers: _Count
+}

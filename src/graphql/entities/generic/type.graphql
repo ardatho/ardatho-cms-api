@@ -1,0 +1,5 @@
+type _Count {
+  count: Int
+}
+
+scalar ListInput

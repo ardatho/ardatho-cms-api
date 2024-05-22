@@ -1,0 +1,10 @@
+dist
+node
+target
+Dockerfile
+.idea
+.vscode
+.git
+tests_result
+
+README.md
