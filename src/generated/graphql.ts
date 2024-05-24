@@ -83,13 +83,44 @@ export type Query = {
 };
 
 
+export type QueryNrolesArgs = {
+  queryInput?: InputMaybe<QueryInput>;
+};
+
+
+export type QueryNusersArgs = {
+  queryInput?: InputMaybe<QueryInput>;
+};
+
+
 export type QueryRoleArgs = {
   id: Scalars['Int'];
 };
 
 
+export type QueryRolesArgs = {
+  queryInput?: InputMaybe<QueryInput>;
+};
+
+
 export type QueryUserArgs = {
   id: Scalars['Int'];
+};
+
+
+export type QueryUsersArgs = {
+  queryInput?: InputMaybe<QueryInput>;
+};
+
+export type QueryInput = {
+  fields?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<Scalars['String']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  options?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Scalars['String']>;
+  search?: InputMaybe<Scalars['String']>;
+  sort?: InputMaybe<Scalars['String']>;
 };
 
 export type Role = {
@@ -242,6 +273,7 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   Permission: ResolverTypeWrapper<Permission>;
   Query: ResolverTypeWrapper<{}>;
+  QueryInput: QueryInput;
   Role: ResolverTypeWrapper<Role>;
   RoleAdd: RoleAdd;
   RolePatch: RolePatch;
@@ -262,6 +294,7 @@ export type ResolversParentTypes = {
   Mutation: {};
   Permission: Permission;
   Query: {};
+  QueryInput: QueryInput;
   Role: Role;
   RoleAdd: RoleAdd;
   RolePatch: RolePatch;
@@ -297,12 +330,12 @@ export type PermissionResolvers<ContextType = any, ParentType extends ResolversP
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
-  nroles?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType>;
-  nusers?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType>;
+  nroles?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNrolesArgs>>;
+  nusers?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNusersArgs>>;
   role?: Resolver<Maybe<ResolversTypes['Role']>, ParentType, ContextType, RequireFields<QueryRoleArgs, 'id'>>;
-  roles?: Resolver<Maybe<Array<Maybe<ResolversTypes['Role']>>>, ParentType, ContextType>;
+  roles?: Resolver<Maybe<Array<Maybe<ResolversTypes['Role']>>>, ParentType, ContextType, Partial<QueryRolesArgs>>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
-  users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
+  users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, Partial<QueryUsersArgs>>;
 };
 
 export type RoleResolvers<ContextType = any, ParentType extends ResolversParentTypes['Role'] = ResolversParentTypes['Role']> = {

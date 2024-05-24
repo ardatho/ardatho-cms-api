@@ -1,15 +1,40 @@
-import type { QueryRoleArgs, Role, User } from 'generated/graphql';
+import type { QueryRoleArgs, Role, User, QueryInput } from 'generated/graphql';
 import type { GraphqlContext } from 'types/common';
 import RoleLoader from './loader';
 import { DateKit } from 'utils/dateKit';
 
 export default {
   Query: {
-    async roles(parent, args, contextValue: GraphqlContext, info): Promise<Role[]> {
-      return contextValue.knex<Role>('role').select();
+    async roles(parent, { queryInput = {} }: { queryInput: QueryInput }, contextValue: GraphqlContext, info): Promise<Role[]> {
+      const query = contextValue.knex<Role>('role');
+
+      if (queryInput.offset > 0) query.offset(queryInput.offset);
+
+      if (queryInput.limit > 0) query.limit(queryInput.limit);
+
+      if (queryInput.fields && queryInput.search) {
+        query.where((builder) => {
+          for (const field of queryInput.fields.split(',')) {
+            builder.orWhereILike(field, `%${queryInput.search}%`);
+          }
+          return builder;
+        });
+      }
+      return query.select();
     },
-    async nroles(parent, args, contextValue: GraphqlContext, info): Promise<{ count: number }> {
-      const results = await contextValue.knex('role').count({ count: '*' });
+    async nroles(parent, { queryInput = {} }: { queryInput: QueryInput }, contextValue: GraphqlContext, info): Promise<{ count: number }> {
+      const query = contextValue.knex('role');
+
+      if (queryInput.fields && queryInput.search) {
+        query.where((builder) => {
+          for (const field of queryInput.fields.split(',')) {
+            builder.orWhereILike(field, `%${queryInput.search}%`);
+          }
+          return builder;
+        });
+      }
+
+      const results = await query.count({ count: '*' });
       return { count: results[0].count };
     },
     async role(parent, { id }: QueryRoleArgs, contextValue: GraphqlContext, info): Promise<Role> {

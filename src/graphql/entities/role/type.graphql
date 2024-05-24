@@ -53,6 +53,6 @@ type Mutation {
 
 type Query {
   role(id: Int!): Role
-  roles: [Role]
-  nroles: _Count
+  roles(queryInput: QueryInput): [Role]
+  nroles(queryInput: QueryInput): _Count
 }

@@ -2,4 +2,15 @@ type _Count {
   count: Int
 }
 
+input QueryInput {
+  offset: Int
+  limit: Int
+  sort: String
+  order: String
+  fields: String
+  search: String
+  filter: String
+  options: String
+}
+
 scalar ListInput

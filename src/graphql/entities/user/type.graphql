@@ -51,6 +51,6 @@ type Mutation {
 type Query {
   me: User
   user(id: Int!): User
-  users: [User]
-  nusers: _Count
+  users(queryInput: QueryInput): [User]
+  nusers(queryInput: QueryInput): _Count
 }
