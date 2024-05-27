@@ -15,6 +15,12 @@ export type Scalars = {
   ListInput: any;
 };
 
+export type Filter = {
+  __typename?: 'Filter';
+  text?: Maybe<Scalars['String']>;
+  value: Scalars['ID'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addRole: Role;
@@ -79,6 +85,7 @@ export type Query = {
   role?: Maybe<Role>;
   roles?: Maybe<Array<Maybe<Role>>>;
   user?: Maybe<User>;
+  userStatus?: Maybe<Array<Maybe<Filter>>>;
   users?: Maybe<Array<Maybe<User>>>;
 };
 
@@ -268,6 +275,8 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Filter: ResolverTypeWrapper<Filter>;
+  ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   ListInput: ResolverTypeWrapper<Scalars['ListInput']>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -289,6 +298,8 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
+  Filter: Filter;
+  ID: Scalars['ID'];
   Int: Scalars['Int'];
   ListInput: Scalars['ListInput'];
   Mutation: {};
@@ -305,6 +316,12 @@ export type ResolversParentTypes = {
   Userpermission: Userpermission;
   Userpermissioninput: Userpermissioninput;
   _Count: _Count;
+};
+
+export type FilterResolvers<ContextType = any, ParentType extends ResolversParentTypes['Filter'] = ResolversParentTypes['Filter']> = {
+  text?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  value?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export interface ListInputScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['ListInput'], any> {
@@ -335,6 +352,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   role?: Resolver<Maybe<ResolversTypes['Role']>, ParentType, ContextType, RequireFields<QueryRoleArgs, 'id'>>;
   roles?: Resolver<Maybe<Array<Maybe<ResolversTypes['Role']>>>, ParentType, ContextType, Partial<QueryRolesArgs>>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
+  userStatus?: Resolver<Maybe<Array<Maybe<ResolversTypes['Filter']>>>, ParentType, ContextType>;
   users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, Partial<QueryUsersArgs>>;
 };
 
@@ -378,6 +396,7 @@ export type _CountResolvers<ContextType = any, ParentType extends ResolversParen
 };
 
 export type Resolvers<ContextType = any> = {
+  Filter?: FilterResolvers<ContextType>;
   ListInput?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   Permission?: PermissionResolvers<ContextType>;

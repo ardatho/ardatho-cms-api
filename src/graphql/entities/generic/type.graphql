@@ -13,4 +13,9 @@ input QueryInput {
   options: String
 }
 
+type Filter {
+  value: ID!
+  text: String
+}
+
 scalar ListInput

@@ -1,6 +1,9 @@
-import type { QueryUserArgs, User, Userpermission, Permission, QueryInput } from 'generated/graphql';
+import type { QueryUserArgs, User, Userpermission, Permission, QueryInput, Filter } from 'generated/graphql';
+import { Knex } from 'knex';
 import type { GraphqlContext } from 'types/common';
 import { DateKit } from 'utils/dateKit';
+
+import { FilterService } from 'services/filterService';
 
 const findPowerOf2 = (n: number, result:number[] = []): number[] => {
 		if (n === 0) return result;
@@ -28,7 +31,10 @@ export default {
         });
       }
 
-      console.log(query.toSQL());
+      if (queryInput.filter) {
+        query.where(builder => FilterService.filterQuery(queryInput.filter, builder))
+      }
+
       return query.select();
     },
     async nusers(parent, { queryInput = {} }: { queryInput: QueryInput }, contextValue: GraphqlContext, info): Promise<{ count: number }> {
@@ -43,6 +49,10 @@ export default {
         });
       }
 
+      if (queryInput.filter) {
+        query.where(builder => FilterService.filterQuery(queryInput.filter, builder))
+      }
+
       const results = await query.count({ count: '*' });
       return { count: results[0].count };
     },
@@ -53,6 +63,13 @@ export default {
     async me(parent, { id }: QueryUserArgs, contextValue: GraphqlContext, info): Promise<User> {
       const users = await contextValue.knex<User>('user').where('id', contextValue.user.id);
       return users[0];
+    },
+    userStatus(): Filter[] {
+      return [
+        { value: '0', text: 'generic.offline' },
+        { value: '1', text: 'generic.online' },
+        { value: '2', text: 'generic.inprogress' },
+      ];
     }
   },
   User: {
