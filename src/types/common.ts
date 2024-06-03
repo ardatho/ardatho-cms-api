@@ -11,5 +11,5 @@ export interface GraphqlContext {
   requestId: string;
   user: jwt.JwtPayload | User;
   knex: Knex;
-  lang: 'fr' | 'en'
+  lang: 'fr' | 'en';
 }

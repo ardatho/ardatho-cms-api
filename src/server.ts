@@ -6,8 +6,7 @@ import * as bodyParser from 'body-parser';
 import Config from 'config';
 import * as cors from 'cors';
 import * as express from 'express';
-import type { User } from 'generated/graphql';
-import { GraphQLError, type GraphQLFormattedError } from 'graphql';
+import { type GraphQLFormattedError } from 'graphql';
 import { createApollo4QueryValidationPlugin } from 'graphql-constraint-directive/apollo4';
 import * as depthLimit from 'graphql-depth-limit';
 import { express as voyagerMiddleware } from 'graphql-voyager/middleware';
@@ -71,9 +70,8 @@ export default async function main() {
         let user = null;
         const lang = req.headers.language || 'en';
         try {
-          user = token !== 'null'
-            ? (jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload)
-            : null;
+          user =
+            token !== 'null' ? (jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload) : null;
         } catch (error) {
           // console.error(error);
         }

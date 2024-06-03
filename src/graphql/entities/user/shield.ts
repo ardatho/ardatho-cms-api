@@ -1,5 +1,5 @@
 import { and } from 'graphql-shield';
-import { isAuthenticated, canView, isItMe } from 'utils/shield';
+import { canView, isAuthenticated, isItMe } from 'utils/shield';
 
 // Permissions
 export default {
@@ -16,6 +16,6 @@ export default {
     verify: isAuthenticated,
   },
   User: {
-    permissions: isItMe
-  }
+    permissions: isItMe,
+  },
 };
