@@ -1,0 +1,60 @@
+"A type that describes an Media."
+type Media {
+  id: Int!
+  title: String
+  filename: String
+  alt: String
+  caption: String
+  description: String
+  credits: String
+  weight: Int
+  dimensions: String
+  file: String
+  type: String
+  image: Media
+  mediacategories: [Mediacategory]
+  i18n: String
+  created_at: String
+  created_since: String
+}
+
+input MediaAdd {
+  file: Upload!
+  type: String!
+  weight: Int
+  dimensions: String
+}
+
+input MediaPatch {
+  title: String
+  alt: String
+  caption: String
+  description: String
+  credits: String
+  image: Int
+  mediacategories: ListInput
+}
+
+type Mutation {
+  patchMedia(
+    id: Int!
+    patch: MediaPatch!
+  ): Media
+  addMedia(
+    item: MediaAdd!
+  ): Media!
+  deleteMedia(
+    id: Int!
+  ): Boolean
+  deleteMediaRelation(
+    id: Int!
+    parentId: Int!
+    parentType: String!
+  ): Boolean
+}
+
+type Query {
+  media(id: Int!): Media
+  medias(queryInput: QueryInput): [Media]
+  nmedias(queryInput: QueryInput): _Count
+}

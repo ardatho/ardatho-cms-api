@@ -1,0 +1,81 @@
+"A type that describes an Page."
+type Page {
+  id: Int
+  status: Int
+  title: String
+  name: String
+  meta_title: String
+  meta_description: String
+  slug: String
+  template_id: Int
+  rank: Int
+  parent_id: Int
+  page_type: String
+  i18n: String
+  created_at: String!
+  created_since: String!
+  nParent: Int
+  nPages: Int
+  pages: [Page]
+  parents: [PageParents]
+  sections: [Section]
+  customclasses: [Customclass]
+}
+
+type PageParents {
+  ids: ListInput
+}
+
+input PageAdd {
+  id: Int
+  status: Int
+  title: String
+  meta_title: String
+  meta_description: String
+  slug: String
+  template_id: Int
+  rank: Int
+  page_type: String
+  i18n: String
+}
+
+input PagePatch {
+  id: Int
+  status: Int
+  title: String
+  meta_title: String
+  meta_description: String
+  slug: String
+  template_id: Int
+  parent_id: Int
+  rank: Int
+  page_type: String
+  customclasses: ListInput
+  i18n: String
+}
+
+type Mutation {
+  addPage (
+    item: PageAdd!
+  ): Page!
+
+  patchPage (
+    id: Int!
+    patch: PagePatch!
+  ): Page
+
+  deletePage (
+    id: Int!
+  ): Boolean
+
+  duplicatePage(
+    id: Int!
+  ): Int
+}
+
+type Query {
+  page(id: Int!): Page
+  pages(queryInput: QueryInput): [Page]
+  treepages(queryInput: QueryInput): [Page]
+  npages(queryInput: QueryInput): _Count
+}

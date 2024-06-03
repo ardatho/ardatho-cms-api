@@ -1,0 +1,89 @@
+"A type that describes an Contentblock."
+type Contentblock {
+  id: Int
+  uniqueId: String
+  status: Int
+  title: String
+  content_type: String
+  content: String
+  video: Media
+  image: Media
+  margin: String
+  href: String
+  youtube_id: String
+  targetblank: Boolean
+  bk_color: String
+  border_color: String
+  content_color: String
+  content_align: Int
+  rank: Int
+  block_id: Int
+  customclasses: [Customclass]
+  i18n: String
+  created_at: String!
+  created_since: String!
+}
+
+input ContentblockAdd {
+  id: Int
+  status: Int
+  title: String
+  content_type: String
+  content: String
+  video: Int
+  image: Int
+  margin: String
+  href: String
+  youtube_id: String
+  targetblank: Boolean
+  bk_color: String
+  border_color: String
+  content_color: String
+  content_align: Int
+  rank: Int
+  block_id: Int
+  i18n: String
+}
+
+input ContentblockPatch {
+  id: Int
+  status: Int
+  title: String
+  content_type: String
+  content: String
+  video: Int
+  image: Int
+  margin: String
+  href: String
+  youtube_id: String
+  targetblank: Boolean
+  bk_color: String
+  border_color: String
+  content_color: String
+  content_align: Int
+  rank: Int
+  block_id: Int
+  customclasses: ListInput
+  i18n: String
+}
+
+type Mutation {
+  addContentblock (
+    item: ContentblockAdd!
+  ): Contentblock!
+
+  patchContentblock (
+    id: Int!
+    patch: ContentblockPatch!
+  ): Contentblock
+
+  deleteContentblock (
+    id: Int!
+  ): Boolean
+}
+
+type Query {
+  contentblock(id: Int!): Contentblock
+  contentblocks(queryInput: QueryInput): [Contentblock]
+  ncontentblocks(queryInput: QueryInput): _Count
+}

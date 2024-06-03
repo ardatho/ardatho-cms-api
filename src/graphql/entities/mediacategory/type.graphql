@@ -1,0 +1,45 @@
+type Mediacategory {
+  id: Int!
+  title: String
+  code: String
+  i18n: String
+  mediacategories: [Mediacategory]
+  rank: Int
+  parent_id: Int
+  nParent: Int
+  nMediacategories: Int
+  parents: [MediacategoryParents]
+  created_at: String
+  created_since: String
+}
+type MediacategoryParents {
+  ids: ListInput
+}
+input MediacategoryAdd {
+  title: String
+}
+input MediacategoryPatch {
+  title: String
+  parent_id: Int
+  rank: Int
+}
+
+type Mutation {
+  patchMediacategory(
+    id: Int!
+    patch: MediacategoryPatch!
+  ): Mediacategory
+  addMediacategory(
+    item: MediacategoryAdd!
+  ): Mediacategory!
+  deleteMediacategory(
+    id: Int!
+  ): Boolean
+}
+
+type Query {
+  mediacategory(id: Int!): Mediacategory
+  mediacategories(queryInput: QueryInput): [Mediacategory]
+  treemediacategories(queryInput: QueryInput): [Mediacategory]
+  nmediacategories(queryInput: QueryInput): _Count
+}

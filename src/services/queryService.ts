@@ -1,7 +1,29 @@
 import { split } from 'lodash';
 import type { Knex } from 'knex';
+import type { QueryInput } from 'generated/graphql';
 
-class FilterService {
+class QueryService {
+  public static buildQuery(query: Knex.QueryBuilder, queryInput: QueryInput, all = false): Knex.QueryBuilder {
+    if (queryInput.offset > 0 && !all) query.offset(queryInput.offset);
+
+    if (queryInput.limit > 0 && !all) query.limit(queryInput.limit);
+
+    if (queryInput.fields && queryInput.search) {
+      query.where((builder) => {
+        for (const field of queryInput.fields.split(',')) {
+          builder.orWhereILike(field, `%${queryInput.search}%`);
+        }
+        return builder;
+      });
+    }
+
+    if (queryInput.filter) {
+      query.where(builder => QueryService.filterQuery(queryInput.filter, builder))
+    }
+
+    return query;
+  }
+
 	public static filterQuery(filters: string, query: Knex.QueryBuilder): Knex.QueryBuilder {
     const myFilters = filters.split(',');
     myFilters.map((key = null) => {
@@ -80,4 +102,4 @@ class FilterService {
 	}
 }
 
-export { FilterService };
+export { QueryService };

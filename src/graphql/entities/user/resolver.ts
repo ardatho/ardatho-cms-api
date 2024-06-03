@@ -3,7 +3,7 @@ import { Knex } from 'knex';
 import type { GraphqlContext } from 'types/common';
 import { DateKit } from 'utils/dateKit';
 
-import { FilterService } from 'services/filterService';
+import { QueryService } from 'services/queryService';
 
 const findPowerOf2 = (n: number, result:number[] = []): number[] => {
 		if (n === 0) return result;
@@ -16,42 +16,13 @@ const findPowerOf2 = (n: number, result:number[] = []): number[] => {
 export default {
   Query: {
     async users(parent, { queryInput = {} }: { queryInput: QueryInput }, contextValue: GraphqlContext, info): Promise<User[]> {
-      const query = contextValue.knex<User>('user');
-
-      if (queryInput.offset > 0) query.offset(queryInput.offset);
-
-      if (queryInput.limit > 0) query.limit(queryInput.limit);
-
-      if (queryInput.fields && queryInput.search) {
-        query.where((builder) => {
-          for (const field of queryInput.fields.split(',')) {
-            builder.orWhereILike(field, `%${queryInput.search}%`);
-          }
-          return builder;
-        });
-      }
-
-      if (queryInput.filter) {
-        query.where(builder => FilterService.filterQuery(queryInput.filter, builder))
-      }
+      const query = QueryService.buildQuery(contextValue.knex<User>('user'), queryInput);
 
       return query.select();
     },
     async nusers(parent, { queryInput = {} }: { queryInput: QueryInput }, contextValue: GraphqlContext, info): Promise<{ count: number }> {
-      const query = contextValue.knex('user');
-
-      if (queryInput.fields && queryInput.search) {
-        query.where((builder) => {
-          for (const field of queryInput.fields.split(',')) {
-            builder.orWhereILike(field, `%${queryInput.search}%`);
-          }
-          return builder;
-        });
-      }
-
-      if (queryInput.filter) {
-        query.where(builder => FilterService.filterQuery(queryInput.filter, builder))
-      }
+      const all = true;
+      const query = QueryService.buildQuery(contextValue.knex<User>('user'), queryInput, all);
 
       const results = await query.count({ count: '*' });
       return { count: results[0].count };

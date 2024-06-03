@@ -1,0 +1,85 @@
+"A type that describes an Section."
+type Section {
+  id: Int
+  uniqueId: String
+  status: Int
+  title: String
+  video: Media
+  image: Media
+  margin: String
+  padding: String
+  color: String
+  position: Int
+  fit_height_to_bk_image: Boolean
+  content_position: String
+  rank: Int
+  parent_module: String
+  parent_id: Int
+  customclasses: [Customclass]
+  i18n: String
+  created_at: String!
+  created_since: String!
+  rows: [Row]
+}
+
+input SectionAdd {
+  id: Int
+  status: Int
+  title: String
+  video: Int
+  image: Int
+  margin: String
+  padding: String
+  color: String
+  position: Int
+  fit_height_to_bk_image: Boolean
+  content_position: String
+  rank: Int
+  parent_module: String
+  parent_id: Int
+  i18n: String
+}
+
+input SectionPatch {
+  id: Int
+  status: Int
+  title: String
+  video: Int
+  image: Int
+  margin: String
+  padding: String
+  color: String
+  position: Int
+  fit_height_to_bk_image: Boolean
+  content_position: String
+  rank: Int
+  parent_module: String
+  parent_id: Int
+  customclasses: ListInput
+  i18n: String
+}
+
+type Mutation {
+  addSection (
+    item: SectionAdd!
+  ): Section!
+
+  patchSection (
+    id: Int!
+    patch: SectionPatch!
+  ): Section
+
+  deleteSection (
+    id: Int!
+  ): Boolean
+
+  duplicateSection(
+    id: Int!
+  ): Int
+}
+
+type Query {
+  section(id: Int!): Section
+  sections(queryInput: QueryInput): [Section]
+  nsections(queryInput: QueryInput): _Count
+}

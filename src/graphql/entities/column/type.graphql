@@ -1,0 +1,73 @@
+"A type that describes an Column."
+type Column {
+  id: Int
+  uniqueId: String
+  status: Int
+  title: String
+  slide_per_view: Int
+  slide_per_group: Int
+  loop_circuit: Boolean
+  auto_play: Boolean
+  auto_height: Boolean
+  rank: Int
+  row_id: Int
+  customclasses: [Customclass]
+  i18n: String
+  created_at: String!
+  created_since: String!
+  blocks: [Block]
+}
+
+input ColumnAdd {
+  id: Int
+  status: Int
+  title: String
+  slide_per_view: Int
+  slide_per_group: Int
+  loop_circuit: Boolean
+  auto_play: Boolean
+  auto_height: Boolean
+  rank: Int
+  row_id: Int
+  i18n: String
+}
+
+input ColumnPatch {
+  id: Int
+  status: Int
+  title: String
+  slide_per_view: Int
+  slide_per_group: Int
+  loop_circuit: Boolean
+  auto_play: Boolean
+  auto_height: Boolean
+  rank: Int
+  row_id: Int
+  customclasses: ListInput
+  i18n: String
+}
+
+type Mutation {
+  addColumn (
+    item: ColumnAdd!
+  ): Column!
+
+  patchColumn (
+    id: Int!
+    patch: ColumnPatch!
+  ): Column
+
+  deleteColumn (
+    id: Int!
+  ): Boolean
+
+  duplicateColumn(
+    id: Int!
+  ): Int
+}
+
+type Query {
+  column(id: Int!): Column
+  columns(queryInput: QueryInput): [Column]
+  ncolumns(queryInput: QueryInput): _Count
+}

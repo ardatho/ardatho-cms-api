@@ -1,0 +1,88 @@
+"A type that describes an Row."
+type Row {
+  id: Int
+  uniqueId: String
+  status: Int
+  title: String
+  gutters: Boolean
+  contained: Boolean
+  layout: String
+  padding: String
+  margin: String
+  color: String
+  image: Media
+  video: Media
+  rank: Int
+  section_id: Int
+  customclasses: [Customclass]
+  i18n: String
+  created_at: String!
+  created_since: String!
+  columns: [Column]
+}
+
+type Layout {
+  id: String
+  title: String
+}
+
+input RowAdd {
+  id: Int
+  status: Int
+  title: String
+  gutters: Boolean
+  contained: Boolean
+  layout: String
+  padding: String
+  margin: String
+  color: String
+  image: Int
+  video: Int
+  rank: Int
+  section_id: Int
+  i18n: String
+}
+
+input RowPatch {
+  id: Int
+  status: Int
+  title: String
+  gutters: Boolean
+  contained: Boolean
+  layout: String
+  padding: String
+  margin: String
+  color: String
+  image: Int
+  video: Int
+  rank: Int
+  section_id: Int
+  customclasses: ListInput
+  i18n: String
+}
+
+type Mutation {
+  addRow (
+    item: RowAdd!
+  ): Row!
+
+  patchRow (
+    id: Int!
+    patch: RowPatch!
+  ): Row
+
+  deleteRow (
+    id: Int!
+  ): Boolean
+
+  duplicateRow(
+    id: Int!
+  ): Int
+}
+
+type Query {
+  layouts: [Layout]
+  row(id: Int!): Row
+  rows(queryInput: QueryInput): [Row]
+  nrows(queryInput: QueryInput): _Count
+}

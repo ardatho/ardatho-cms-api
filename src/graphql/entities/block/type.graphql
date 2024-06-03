@@ -1,0 +1,104 @@
+"A type that describes an Block."
+type Block {
+  id: Int
+  uniqueId: String
+  status: Int
+  title: String
+  video: Media
+  image: Media
+  padding: String
+  bk_color: String
+  text_color: String
+  href: String
+  targetblank: Boolean
+  position: Int
+  text_align: Int
+  height: Int
+  width: Int
+  fit_height_to_bk_image: Boolean
+  rank: Int
+  parent_module: String
+  parent_id: Int
+  customclasses: [Customclass]
+  i18n: String
+  created_at: String!
+  created_since: String!
+  contentblocks: [Contentblock]
+}
+
+input BlockAdd {
+  id: Int
+  status: Int
+  title: String
+  video: Int
+  image: Int
+  padding: String
+  bk_color: String
+  text_color: String
+  href: String
+  targetblank: Boolean
+  position: Int
+  text_align: Int
+  height: Int
+  width: Int
+  fit_height_to_bk_image: Boolean
+  rank: Int
+  parent_module: String
+  parent_id: Int
+  i18n: String
+}
+
+input BlockPatch {
+  id: Int
+  status: Int
+  title: String
+  video: Int
+  image: Int
+  padding: String
+  bk_color: String
+  text_color: String
+  href: String
+  targetblank: Boolean
+  position: Int
+  text_align: Int
+  height: Int
+  width: Int
+  fit_height_to_bk_image: Boolean
+  rank: Int
+  parent_module: String
+  parent_id: Int
+  contentblocks: ListInput
+  customclasses: ListInput
+  i18n: String
+}
+
+type Mutation {
+  addBlock (
+    item: BlockAdd!
+  ): Block!
+
+  patchBlock (
+    id: Int!
+    patch: BlockPatch!
+  ): Block
+
+  deleteBlock (
+    id: Int!
+  ): Boolean
+
+  duplicateBlock(
+    id: Int!
+  ): Int
+
+  deleteBlockRelation(
+    id: Int!
+    parentId: Int!
+    parentType: String!
+  ): Boolean
+}
+
+type Query {
+  block(id: Int!): Block
+  blocks(queryInput: QueryInput): [Block]
+  nblocks(queryInput: QueryInput): _Count
+}

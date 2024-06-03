@@ -19,3 +19,4 @@ type Filter {
 }
 
 scalar ListInput
+scalar Upload
