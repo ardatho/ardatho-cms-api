@@ -19,9 +19,9 @@ type Block {
   rank: Int
   parent_module: String
   parent_id: Int
-  customclasses: [Customclass]
   i18n: String
   created_at: String!
+  updated_at: String!
   created_since: String!
   contentblocks: [Contentblock]
 }
@@ -68,7 +68,6 @@ input BlockPatch {
   parent_module: String
   parent_id: Int
   contentblocks: ListInput
-  customclasses: ListInput
   i18n: String
 }
 

@@ -9,8 +9,9 @@ type Mediacategory {
   nParent: Int
   nMediacategories: Int
   parents: [MediacategoryParents]
-  created_at: String
-  created_since: String
+  created_at: String!
+  updated_at: String!
+  created_since: String!
 }
 type MediacategoryParents {
   ids: ListInput

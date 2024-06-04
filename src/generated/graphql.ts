@@ -23,7 +23,6 @@ export type Block = {
   contentblocks?: Maybe<Array<Maybe<Contentblock>>>;
   created_at: Scalars['String'];
   created_since: Scalars['String'];
-  customclasses?: Maybe<Array<Maybe<Customclass>>>;
   fit_height_to_bk_image?: Maybe<Scalars['Boolean']>;
   height?: Maybe<Scalars['Int']>;
   href?: Maybe<Scalars['String']>;
@@ -41,6 +40,7 @@ export type Block = {
   text_color?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   uniqueId?: Maybe<Scalars['String']>;
+  updated_at: Scalars['String'];
   video?: Maybe<Media>;
   width?: Maybe<Scalars['Int']>;
 };
@@ -70,7 +70,6 @@ export type BlockAdd = {
 export type BlockPatch = {
   bk_color?: InputMaybe<Scalars['String']>;
   contentblocks?: InputMaybe<Scalars['ListInput']>;
-  customclasses?: InputMaybe<Scalars['ListInput']>;
   fit_height_to_bk_image?: InputMaybe<Scalars['Boolean']>;
   height?: InputMaybe<Scalars['Int']>;
   href?: InputMaybe<Scalars['String']>;
@@ -99,7 +98,6 @@ export type Column = {
   blocks?: Maybe<Array<Maybe<Block>>>;
   created_at: Scalars['String'];
   created_since: Scalars['String'];
-  customclasses?: Maybe<Array<Maybe<Customclass>>>;
   i18n?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   loop_circuit?: Maybe<Scalars['Boolean']>;
@@ -110,6 +108,7 @@ export type Column = {
   status?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   uniqueId?: Maybe<Scalars['String']>;
+  updated_at: Scalars['String'];
 };
 
 export type ColumnAdd = {
@@ -129,7 +128,6 @@ export type ColumnAdd = {
 export type ColumnPatch = {
   auto_height?: InputMaybe<Scalars['Boolean']>;
   auto_play?: InputMaybe<Scalars['Boolean']>;
-  customclasses?: InputMaybe<Scalars['ListInput']>;
   i18n?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
   loop_circuit?: InputMaybe<Scalars['Boolean']>;
@@ -153,7 +151,6 @@ export type Contentblock = {
   content_type?: Maybe<Scalars['String']>;
   created_at: Scalars['String'];
   created_since: Scalars['String'];
-  customclasses?: Maybe<Array<Maybe<Customclass>>>;
   href?: Maybe<Scalars['String']>;
   i18n?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
@@ -164,6 +161,7 @@ export type Contentblock = {
   targetblank?: Maybe<Scalars['Boolean']>;
   title?: Maybe<Scalars['String']>;
   uniqueId?: Maybe<Scalars['String']>;
+  updated_at: Scalars['String'];
   video?: Maybe<Media>;
   youtube_id?: Maybe<Scalars['String']>;
 };
@@ -197,7 +195,6 @@ export type ContentblockPatch = {
   content_align?: InputMaybe<Scalars['Int']>;
   content_color?: InputMaybe<Scalars['String']>;
   content_type?: InputMaybe<Scalars['String']>;
-  customclasses?: InputMaybe<Scalars['ListInput']>;
   href?: InputMaybe<Scalars['String']>;
   i18n?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
@@ -209,33 +206,6 @@ export type ContentblockPatch = {
   title?: InputMaybe<Scalars['String']>;
   video?: InputMaybe<Scalars['Int']>;
   youtube_id?: InputMaybe<Scalars['String']>;
-};
-
-/** A type that describes an customclass. */
-export type Customclass = {
-  __typename?: 'Customclass';
-  code?: Maybe<Scalars['String']>;
-  created_at: Scalars['String'];
-  created_since: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  i18n?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  image?: Maybe<Media>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type CustomclassAdd = {
-  code?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
-  image?: InputMaybe<Scalars['Int']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type CustomclassPatch = {
-  code?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
-  image?: InputMaybe<Scalars['Int']>;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type Filter = {
@@ -255,8 +225,8 @@ export type Media = {
   __typename?: 'Media';
   alt?: Maybe<Scalars['String']>;
   caption?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['String']>;
-  created_since?: Maybe<Scalars['String']>;
+  created_at: Scalars['String'];
+  created_since: Scalars['String'];
   credits?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   dimensions?: Maybe<Scalars['String']>;
@@ -268,6 +238,7 @@ export type Media = {
   mediacategories?: Maybe<Array<Maybe<Mediacategory>>>;
   title?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
+  updated_at: Scalars['String'];
   weight?: Maybe<Scalars['Int']>;
 };
 
@@ -291,8 +262,8 @@ export type MediaPatch = {
 export type Mediacategory = {
   __typename?: 'Mediacategory';
   code?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['String']>;
-  created_since?: Maybe<Scalars['String']>;
+  created_at: Scalars['String'];
+  created_since: Scalars['String'];
   i18n?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   mediacategories?: Maybe<Array<Maybe<Mediacategory>>>;
@@ -302,6 +273,7 @@ export type Mediacategory = {
   parents?: Maybe<Array<Maybe<MediacategoryParents>>>;
   rank?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
+  updated_at: Scalars['String'];
 };
 
 export type MediacategoryAdd = {
@@ -324,7 +296,6 @@ export type Mutation = {
   addBlock: Block;
   addColumn: Column;
   addContentblock: Contentblock;
-  addCustomclass: Customclass;
   addMedia: Media;
   addMediacategory: Mediacategory;
   addPage: Page;
@@ -336,8 +307,6 @@ export type Mutation = {
   deleteBlockRelation?: Maybe<Scalars['Boolean']>;
   deleteColumn?: Maybe<Scalars['Boolean']>;
   deleteContentblock?: Maybe<Scalars['Boolean']>;
-  deleteCustomclass?: Maybe<Scalars['Boolean']>;
-  deleteCustomclassRelation?: Maybe<Scalars['Boolean']>;
   deleteMedia?: Maybe<Scalars['Boolean']>;
   deleteMediaRelation?: Maybe<Scalars['Boolean']>;
   deleteMediacategory?: Maybe<Scalars['Boolean']>;
@@ -355,7 +324,6 @@ export type Mutation = {
   patchBlock?: Maybe<Block>;
   patchColumn?: Maybe<Column>;
   patchContentblock?: Maybe<Contentblock>;
-  patchCustomclass?: Maybe<Customclass>;
   patchMedia?: Maybe<Media>;
   patchMediacategory?: Maybe<Mediacategory>;
   patchPage?: Maybe<Page>;
@@ -379,11 +347,6 @@ export type MutationAddColumnArgs = {
 
 export type MutationAddContentblockArgs = {
   item: ContentblockAdd;
-};
-
-
-export type MutationAddCustomclassArgs = {
-  item: CustomclassAdd;
 };
 
 
@@ -441,18 +404,6 @@ export type MutationDeleteColumnArgs = {
 
 export type MutationDeleteContentblockArgs = {
   id: Scalars['Int'];
-};
-
-
-export type MutationDeleteCustomclassArgs = {
-  id: Scalars['Int'];
-};
-
-
-export type MutationDeleteCustomclassRelationArgs = {
-  id: Scalars['Int'];
-  parentId: Scalars['Int'];
-  parentType: Scalars['String'];
 };
 
 
@@ -547,12 +498,6 @@ export type MutationPatchContentblockArgs = {
 };
 
 
-export type MutationPatchCustomclassArgs = {
-  id: Scalars['Int'];
-  patch: CustomclassPatch;
-};
-
-
 export type MutationPatchMediaArgs = {
   id: Scalars['Int'];
   patch: MediaPatch;
@@ -599,7 +544,6 @@ export type Page = {
   __typename?: 'Page';
   created_at: Scalars['String'];
   created_since: Scalars['String'];
-  customclasses?: Maybe<Array<Maybe<Customclass>>>;
   i18n?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   meta_description?: Maybe<Scalars['String']>;
@@ -610,13 +554,14 @@ export type Page = {
   page_type?: Maybe<Scalars['String']>;
   pages?: Maybe<Array<Maybe<Page>>>;
   parent_id?: Maybe<Scalars['Int']>;
-  parents?: Maybe<Array<Maybe<PageParents>>>;
+  parents?: Maybe<Array<Maybe<Page>>>;
   rank?: Maybe<Scalars['Int']>;
   sections?: Maybe<Array<Maybe<Section>>>;
   slug?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['Int']>;
   template_id?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
+  updated_at: Scalars['String'];
 };
 
 export type PageAdd = {
@@ -632,13 +577,7 @@ export type PageAdd = {
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type PageParents = {
-  __typename?: 'PageParents';
-  ids?: Maybe<Scalars['ListInput']>;
-};
-
 export type PagePatch = {
-  customclasses?: InputMaybe<Scalars['ListInput']>;
   i18n?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
   meta_description?: InputMaybe<Scalars['String']>;
@@ -666,8 +605,6 @@ export type Query = {
   columns?: Maybe<Array<Maybe<Column>>>;
   contentblock?: Maybe<Contentblock>;
   contentblocks?: Maybe<Array<Maybe<Contentblock>>>;
-  customclass?: Maybe<Customclass>;
-  customclasses?: Maybe<Array<Maybe<Customclass>>>;
   layouts?: Maybe<Array<Maybe<Layout>>>;
   me?: Maybe<User>;
   media?: Maybe<Media>;
@@ -677,7 +614,6 @@ export type Query = {
   nblocks?: Maybe<_Count>;
   ncolumns?: Maybe<_Count>;
   ncontentblocks?: Maybe<_Count>;
-  ncustomclasses?: Maybe<_Count>;
   nmediacategories?: Maybe<_Count>;
   nmedias?: Maybe<_Count>;
   npages?: Maybe<_Count>;
@@ -686,6 +622,7 @@ export type Query = {
   nsections?: Maybe<_Count>;
   nusers?: Maybe<_Count>;
   page?: Maybe<Page>;
+  pageStatus?: Maybe<Array<Maybe<Filter>>>;
   pages?: Maybe<Array<Maybe<Page>>>;
   role?: Maybe<Role>;
   roles?: Maybe<Array<Maybe<Role>>>;
@@ -731,16 +668,6 @@ export type QueryContentblocksArgs = {
 };
 
 
-export type QueryCustomclassArgs = {
-  id: Scalars['Int'];
-};
-
-
-export type QueryCustomclassesArgs = {
-  queryInput?: InputMaybe<QueryInput>;
-};
-
-
 export type QueryMediaArgs = {
   id: Scalars['Int'];
 };
@@ -772,11 +699,6 @@ export type QueryNcolumnsArgs = {
 
 
 export type QueryNcontentblocksArgs = {
-  queryInput?: InputMaybe<QueryInput>;
-};
-
-
-export type QueryNcustomclassesArgs = {
   queryInput?: InputMaybe<QueryInput>;
 };
 
@@ -888,12 +810,12 @@ export type QueryInput = {
 
 export type Role = {
   __typename?: 'Role';
-  created_at?: Maybe<Scalars['String']>;
-  created_since?: Maybe<Scalars['String']>;
+  created_at: Scalars['String'];
+  created_since: Scalars['String'];
   i18n?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['String']>;
+  updated_at: Scalars['String'];
   userpermissions?: Maybe<Array<Maybe<Userpermission>>>;
   users?: Maybe<Array<Maybe<User>>>;
 };
@@ -916,7 +838,6 @@ export type Row = {
   contained?: Maybe<Scalars['Boolean']>;
   created_at: Scalars['String'];
   created_since: Scalars['String'];
-  customclasses?: Maybe<Array<Maybe<Customclass>>>;
   gutters?: Maybe<Scalars['Boolean']>;
   i18n?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
@@ -929,6 +850,7 @@ export type Row = {
   status?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   uniqueId?: Maybe<Scalars['String']>;
+  updated_at: Scalars['String'];
   video?: Maybe<Media>;
 };
 
@@ -952,7 +874,6 @@ export type RowAdd = {
 export type RowPatch = {
   color?: InputMaybe<Scalars['String']>;
   contained?: InputMaybe<Scalars['Boolean']>;
-  customclasses?: InputMaybe<Scalars['ListInput']>;
   gutters?: InputMaybe<Scalars['Boolean']>;
   i18n?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
@@ -974,7 +895,6 @@ export type Section = {
   content_position?: Maybe<Scalars['String']>;
   created_at: Scalars['String'];
   created_since: Scalars['String'];
-  customclasses?: Maybe<Array<Maybe<Customclass>>>;
   fit_height_to_bk_image?: Maybe<Scalars['Boolean']>;
   i18n?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
@@ -989,6 +909,7 @@ export type Section = {
   status?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   uniqueId?: Maybe<Scalars['String']>;
+  updated_at: Scalars['String'];
   video?: Maybe<Media>;
 };
 
@@ -1013,7 +934,6 @@ export type SectionAdd = {
 export type SectionPatch = {
   color?: InputMaybe<Scalars['String']>;
   content_position?: InputMaybe<Scalars['String']>;
-  customclasses?: InputMaybe<Scalars['ListInput']>;
   fit_height_to_bk_image?: InputMaybe<Scalars['Boolean']>;
   i18n?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['Int']>;
@@ -1031,8 +951,8 @@ export type SectionPatch = {
 
 export type User = {
   __typename?: 'User';
-  created_at?: Maybe<Scalars['String']>;
-  created_since?: Maybe<Scalars['String']>;
+  created_at: Scalars['String'];
+  created_since: Scalars['String'];
   email?: Maybe<Scalars['String']>;
   firstname?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
@@ -1041,7 +961,7 @@ export type User = {
   password?: Maybe<Scalars['String']>;
   permissions?: Maybe<Array<Maybe<Permission>>>;
   status?: Maybe<Scalars['Int']>;
-  updated_at?: Maybe<Scalars['String']>;
+  updated_at: Scalars['String'];
 };
 
 export type UserAdd = {
@@ -1161,9 +1081,6 @@ export type ResolversTypes = {
   Contentblock: ResolverTypeWrapper<Contentblock>;
   ContentblockAdd: ContentblockAdd;
   ContentblockPatch: ContentblockPatch;
-  Customclass: ResolverTypeWrapper<Customclass>;
-  CustomclassAdd: CustomclassAdd;
-  CustomclassPatch: CustomclassPatch;
   Filter: ResolverTypeWrapper<Filter>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
@@ -1179,7 +1096,6 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   Page: ResolverTypeWrapper<Page>;
   PageAdd: PageAdd;
-  PageParents: ResolverTypeWrapper<PageParents>;
   PagePatch: PagePatch;
   Permission: ResolverTypeWrapper<Permission>;
   Query: ResolverTypeWrapper<{}>;
@@ -1215,9 +1131,6 @@ export type ResolversParentTypes = {
   Contentblock: Contentblock;
   ContentblockAdd: ContentblockAdd;
   ContentblockPatch: ContentblockPatch;
-  Customclass: Customclass;
-  CustomclassAdd: CustomclassAdd;
-  CustomclassPatch: CustomclassPatch;
   Filter: Filter;
   ID: Scalars['ID'];
   Int: Scalars['Int'];
@@ -1233,7 +1146,6 @@ export type ResolversParentTypes = {
   Mutation: {};
   Page: Page;
   PageAdd: PageAdd;
-  PageParents: PageParents;
   PagePatch: PagePatch;
   Permission: Permission;
   Query: {};
@@ -1262,7 +1174,6 @@ export type BlockResolvers<ContextType = any, ParentType extends ResolversParent
   contentblocks?: Resolver<Maybe<Array<Maybe<ResolversTypes['Contentblock']>>>, ParentType, ContextType>;
   created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  customclasses?: Resolver<Maybe<Array<Maybe<ResolversTypes['Customclass']>>>, ParentType, ContextType>;
   fit_height_to_bk_image?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   height?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   href?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -1280,6 +1191,7 @@ export type BlockResolvers<ContextType = any, ParentType extends ResolversParent
   text_color?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   uniqueId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   video?: Resolver<Maybe<ResolversTypes['Media']>, ParentType, ContextType>;
   width?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -1291,7 +1203,6 @@ export type ColumnResolvers<ContextType = any, ParentType extends ResolversParen
   blocks?: Resolver<Maybe<Array<Maybe<ResolversTypes['Block']>>>, ParentType, ContextType>;
   created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  customclasses?: Resolver<Maybe<Array<Maybe<ResolversTypes['Customclass']>>>, ParentType, ContextType>;
   i18n?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   loop_circuit?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
@@ -1302,6 +1213,7 @@ export type ColumnResolvers<ContextType = any, ParentType extends ResolversParen
   status?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   uniqueId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1315,7 +1227,6 @@ export type ContentblockResolvers<ContextType = any, ParentType extends Resolver
   content_type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  customclasses?: Resolver<Maybe<Array<Maybe<ResolversTypes['Customclass']>>>, ParentType, ContextType>;
   href?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   i18n?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
@@ -1326,20 +1237,9 @@ export type ContentblockResolvers<ContextType = any, ParentType extends Resolver
   targetblank?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   uniqueId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   video?: Resolver<Maybe<ResolversTypes['Media']>, ParentType, ContextType>;
   youtube_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type CustomclassResolvers<ContextType = any, ParentType extends ResolversParentTypes['Customclass'] = ResolversParentTypes['Customclass']> = {
-  code?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  i18n?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  image?: Resolver<Maybe<ResolversTypes['Media']>, ParentType, ContextType>;
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1362,8 +1262,8 @@ export interface ListInputScalarConfig extends GraphQLScalarTypeConfig<Resolvers
 export type MediaResolvers<ContextType = any, ParentType extends ResolversParentTypes['Media'] = ResolversParentTypes['Media']> = {
   alt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   caption?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  created_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  created_since?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   credits?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   dimensions?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -1375,14 +1275,15 @@ export type MediaResolvers<ContextType = any, ParentType extends ResolversParent
   mediacategories?: Resolver<Maybe<Array<Maybe<ResolversTypes['Mediacategory']>>>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   weight?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type MediacategoryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mediacategory'] = ResolversParentTypes['Mediacategory']> = {
   code?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  created_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  created_since?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   i18n?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   mediacategories?: Resolver<Maybe<Array<Maybe<ResolversTypes['Mediacategory']>>>, ParentType, ContextType>;
@@ -1392,6 +1293,7 @@ export type MediacategoryResolvers<ContextType = any, ParentType extends Resolve
   parents?: Resolver<Maybe<Array<Maybe<ResolversTypes['MediacategoryParents']>>>, ParentType, ContextType>;
   rank?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1404,7 +1306,6 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   addBlock?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<MutationAddBlockArgs, 'item'>>;
   addColumn?: Resolver<ResolversTypes['Column'], ParentType, ContextType, RequireFields<MutationAddColumnArgs, 'item'>>;
   addContentblock?: Resolver<ResolversTypes['Contentblock'], ParentType, ContextType, RequireFields<MutationAddContentblockArgs, 'item'>>;
-  addCustomclass?: Resolver<ResolversTypes['Customclass'], ParentType, ContextType, RequireFields<MutationAddCustomclassArgs, 'item'>>;
   addMedia?: Resolver<ResolversTypes['Media'], ParentType, ContextType, RequireFields<MutationAddMediaArgs, 'item'>>;
   addMediacategory?: Resolver<ResolversTypes['Mediacategory'], ParentType, ContextType, RequireFields<MutationAddMediacategoryArgs, 'item'>>;
   addPage?: Resolver<ResolversTypes['Page'], ParentType, ContextType, RequireFields<MutationAddPageArgs, 'item'>>;
@@ -1416,8 +1317,6 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   deleteBlockRelation?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeleteBlockRelationArgs, 'id' | 'parentId' | 'parentType'>>;
   deleteColumn?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeleteColumnArgs, 'id'>>;
   deleteContentblock?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeleteContentblockArgs, 'id'>>;
-  deleteCustomclass?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeleteCustomclassArgs, 'id'>>;
-  deleteCustomclassRelation?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeleteCustomclassRelationArgs, 'id' | 'parentId' | 'parentType'>>;
   deleteMedia?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeleteMediaArgs, 'id'>>;
   deleteMediaRelation?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeleteMediaRelationArgs, 'id' | 'parentId' | 'parentType'>>;
   deleteMediacategory?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationDeleteMediacategoryArgs, 'id'>>;
@@ -1435,7 +1334,6 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   patchBlock?: Resolver<Maybe<ResolversTypes['Block']>, ParentType, ContextType, RequireFields<MutationPatchBlockArgs, 'id' | 'patch'>>;
   patchColumn?: Resolver<Maybe<ResolversTypes['Column']>, ParentType, ContextType, RequireFields<MutationPatchColumnArgs, 'id' | 'patch'>>;
   patchContentblock?: Resolver<Maybe<ResolversTypes['Contentblock']>, ParentType, ContextType, RequireFields<MutationPatchContentblockArgs, 'id' | 'patch'>>;
-  patchCustomclass?: Resolver<Maybe<ResolversTypes['Customclass']>, ParentType, ContextType, RequireFields<MutationPatchCustomclassArgs, 'id' | 'patch'>>;
   patchMedia?: Resolver<Maybe<ResolversTypes['Media']>, ParentType, ContextType, RequireFields<MutationPatchMediaArgs, 'id' | 'patch'>>;
   patchMediacategory?: Resolver<Maybe<ResolversTypes['Mediacategory']>, ParentType, ContextType, RequireFields<MutationPatchMediacategoryArgs, 'id' | 'patch'>>;
   patchPage?: Resolver<Maybe<ResolversTypes['Page']>, ParentType, ContextType, RequireFields<MutationPatchPageArgs, 'id' | 'patch'>>;
@@ -1449,7 +1347,6 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type PageResolvers<ContextType = any, ParentType extends ResolversParentTypes['Page'] = ResolversParentTypes['Page']> = {
   created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  customclasses?: Resolver<Maybe<Array<Maybe<ResolversTypes['Customclass']>>>, ParentType, ContextType>;
   i18n?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   meta_description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -1460,18 +1357,14 @@ export type PageResolvers<ContextType = any, ParentType extends ResolversParentT
   page_type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   pages?: Resolver<Maybe<Array<Maybe<ResolversTypes['Page']>>>, ParentType, ContextType>;
   parent_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  parents?: Resolver<Maybe<Array<Maybe<ResolversTypes['PageParents']>>>, ParentType, ContextType>;
+  parents?: Resolver<Maybe<Array<Maybe<ResolversTypes['Page']>>>, ParentType, ContextType>;
   rank?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   sections?: Resolver<Maybe<Array<Maybe<ResolversTypes['Section']>>>, ParentType, ContextType>;
   slug?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   template_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type PageParentsResolvers<ContextType = any, ParentType extends ResolversParentTypes['PageParents'] = ResolversParentTypes['PageParents']> = {
-  ids?: Resolver<Maybe<ResolversTypes['ListInput']>, ParentType, ContextType>;
+  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1488,8 +1381,6 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   columns?: Resolver<Maybe<Array<Maybe<ResolversTypes['Column']>>>, ParentType, ContextType, Partial<QueryColumnsArgs>>;
   contentblock?: Resolver<Maybe<ResolversTypes['Contentblock']>, ParentType, ContextType, RequireFields<QueryContentblockArgs, 'id'>>;
   contentblocks?: Resolver<Maybe<Array<Maybe<ResolversTypes['Contentblock']>>>, ParentType, ContextType, Partial<QueryContentblocksArgs>>;
-  customclass?: Resolver<Maybe<ResolversTypes['Customclass']>, ParentType, ContextType, RequireFields<QueryCustomclassArgs, 'id'>>;
-  customclasses?: Resolver<Maybe<Array<Maybe<ResolversTypes['Customclass']>>>, ParentType, ContextType, Partial<QueryCustomclassesArgs>>;
   layouts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Layout']>>>, ParentType, ContextType>;
   me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   media?: Resolver<Maybe<ResolversTypes['Media']>, ParentType, ContextType, RequireFields<QueryMediaArgs, 'id'>>;
@@ -1499,7 +1390,6 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   nblocks?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNblocksArgs>>;
   ncolumns?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNcolumnsArgs>>;
   ncontentblocks?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNcontentblocksArgs>>;
-  ncustomclasses?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNcustomclassesArgs>>;
   nmediacategories?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNmediacategoriesArgs>>;
   nmedias?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNmediasArgs>>;
   npages?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNpagesArgs>>;
@@ -1508,6 +1398,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   nsections?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNsectionsArgs>>;
   nusers?: Resolver<Maybe<ResolversTypes['_Count']>, ParentType, ContextType, Partial<QueryNusersArgs>>;
   page?: Resolver<Maybe<ResolversTypes['Page']>, ParentType, ContextType, RequireFields<QueryPageArgs, 'id'>>;
+  pageStatus?: Resolver<Maybe<Array<Maybe<ResolversTypes['Filter']>>>, ParentType, ContextType>;
   pages?: Resolver<Maybe<Array<Maybe<ResolversTypes['Page']>>>, ParentType, ContextType, Partial<QueryPagesArgs>>;
   role?: Resolver<Maybe<ResolversTypes['Role']>, ParentType, ContextType, RequireFields<QueryRoleArgs, 'id'>>;
   roles?: Resolver<Maybe<Array<Maybe<ResolversTypes['Role']>>>, ParentType, ContextType, Partial<QueryRolesArgs>>;
@@ -1523,12 +1414,12 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type RoleResolvers<ContextType = any, ParentType extends ResolversParentTypes['Role'] = ResolversParentTypes['Role']> = {
-  created_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  created_since?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   i18n?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  updated_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   userpermissions?: Resolver<Maybe<Array<Maybe<ResolversTypes['Userpermission']>>>, ParentType, ContextType>;
   users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -1540,7 +1431,6 @@ export type RowResolvers<ContextType = any, ParentType extends ResolversParentTy
   contained?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  customclasses?: Resolver<Maybe<Array<Maybe<ResolversTypes['Customclass']>>>, ParentType, ContextType>;
   gutters?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   i18n?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
@@ -1553,6 +1443,7 @@ export type RowResolvers<ContextType = any, ParentType extends ResolversParentTy
   status?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   uniqueId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   video?: Resolver<Maybe<ResolversTypes['Media']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -1562,7 +1453,6 @@ export type SectionResolvers<ContextType = any, ParentType extends ResolversPare
   content_position?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  customclasses?: Resolver<Maybe<Array<Maybe<ResolversTypes['Customclass']>>>, ParentType, ContextType>;
   fit_height_to_bk_image?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   i18n?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
@@ -1577,6 +1467,7 @@ export type SectionResolvers<ContextType = any, ParentType extends ResolversPare
   status?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   uniqueId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   video?: Resolver<Maybe<ResolversTypes['Media']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -1586,8 +1477,8 @@ export interface UploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 }
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  created_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  created_since?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  created_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  created_since?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   firstname?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
@@ -1596,7 +1487,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   password?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   permissions?: Resolver<Maybe<Array<Maybe<ResolversTypes['Permission']>>>, ParentType, ContextType>;
   status?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  updated_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updated_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -1616,7 +1507,6 @@ export type Resolvers<ContextType = any> = {
   Block?: BlockResolvers<ContextType>;
   Column?: ColumnResolvers<ContextType>;
   Contentblock?: ContentblockResolvers<ContextType>;
-  Customclass?: CustomclassResolvers<ContextType>;
   Filter?: FilterResolvers<ContextType>;
   Layout?: LayoutResolvers<ContextType>;
   ListInput?: GraphQLScalarType;
@@ -1625,7 +1515,6 @@ export type Resolvers<ContextType = any> = {
   MediacategoryParents?: MediacategoryParentsResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Page?: PageResolvers<ContextType>;
-  PageParents?: PageParentsResolvers<ContextType>;
   Permission?: PermissionResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Role?: RoleResolvers<ContextType>;

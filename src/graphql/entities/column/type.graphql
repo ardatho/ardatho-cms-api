@@ -11,9 +11,9 @@ type Column {
   auto_height: Boolean
   rank: Int
   row_id: Int
-  customclasses: [Customclass]
   i18n: String
   created_at: String!
+  updated_at: String!
   created_since: String!
   blocks: [Block]
 }
@@ -43,7 +43,6 @@ input ColumnPatch {
   auto_height: Boolean
   rank: Int
   row_id: Int
-  customclasses: ListInput
   i18n: String
 }
 

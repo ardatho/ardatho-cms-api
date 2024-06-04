@@ -13,17 +13,13 @@ type Page {
   page_type: String
   i18n: String
   created_at: String!
+  updated_at: String!
   created_since: String!
   nParent: Int
   nPages: Int
   pages: [Page]
-  parents: [PageParents]
+  parents: [Page]
   sections: [Section]
-  customclasses: [Customclass]
-}
-
-type PageParents {
-  ids: ListInput
 }
 
 input PageAdd {
@@ -50,7 +46,6 @@ input PagePatch {
   parent_id: Int
   rank: Int
   page_type: String
-  customclasses: ListInput
   i18n: String
 }
 
@@ -78,4 +73,6 @@ type Query {
   pages(queryInput: QueryInput): [Page]
   treepages(queryInput: QueryInput): [Page]
   npages(queryInput: QueryInput): _Count
+
+  pageStatus: [Filter]
 }

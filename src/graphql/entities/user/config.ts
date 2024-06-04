@@ -1,6 +1,6 @@
 const config = {
-  table: 'role',
-  i18nFields: ['title'],
+  table: 'user',
+  i18nFields: [],
 };
 
 export default config;

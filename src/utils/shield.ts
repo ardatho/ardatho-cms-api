@@ -14,6 +14,7 @@ export const isAuthenticated = rule({ cache: 'contextual' })(async (parent, args
 export const canView = (moduleName: string) =>
   rule({ cache: 'contextual' })(async (parent, args, ctx) => {
     console.log(moduleName);
+    console.log({ canView: ctx.user.role === 'admin' });
     return ctx.user.role === 'admin';
   });
 

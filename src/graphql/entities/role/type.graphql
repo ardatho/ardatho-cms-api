@@ -2,9 +2,9 @@ type Role {
   id: Int
   title: String
   i18n: String
-  created_at: String
-  updated_at: String
-  created_since: String
+  created_at: String!
+  updated_at: String!
+  created_since: String!
   userpermissions: [Userpermission]
   users: [User]
 }

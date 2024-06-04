@@ -18,9 +18,9 @@ type Contentblock {
   content_align: Int
   rank: Int
   block_id: Int
-  customclasses: [Customclass]
   i18n: String
   created_at: String!
+  updated_at: String!
   created_since: String!
 }
 
@@ -63,7 +63,6 @@ input ContentblockPatch {
   content_align: Int
   rank: Int
   block_id: Int
-  customclasses: ListInput
   i18n: String
 }
 

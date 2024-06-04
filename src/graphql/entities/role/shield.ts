@@ -1,5 +1,5 @@
 import { and } from 'graphql-shield';
-import { isAuthenticated, canView } from 'utils/shield';
+import { canView, isAuthenticated } from 'utils/shield';
 
 // Permissions
 export default {

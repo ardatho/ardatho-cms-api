@@ -56,7 +56,7 @@ class Nexus<T> implements NexusItem<T> {
   }
 
   public async countItems(queryInput: QueryInput): Promise<{ count: number }> {
-    this.getItemsQuery(queryInput, true)
+    this.getItemsQuery(queryInput, true);
     const results = await this.query.count({ count: '*' });
     return { count: results[0].count };
   }
