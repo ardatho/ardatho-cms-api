@@ -18,5 +18,7 @@ type Filter {
   text: String
 }
 
+scalar Date
+
 scalar ListInput
 scalar Upload

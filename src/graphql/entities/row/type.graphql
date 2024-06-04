@@ -15,8 +15,8 @@ type Row {
   rank: Int
   section_id: Int
   i18n: String
-  created_at: String!
-  updated_at: String!
+  created_at: Date!
+  updated_at: Date!
   created_since: String!
   columns: [Column]
 }

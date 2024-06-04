@@ -6,8 +6,8 @@ type User {
   password: String
   status: Int
   last_login_date: String
-  created_at: String!
-  updated_at: String!
+  created_at: Date!
+  updated_at: Date!
   created_since: String!
   permissions: [Permission]
 }

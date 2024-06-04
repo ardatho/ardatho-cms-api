@@ -12,8 +12,8 @@ type Column {
   rank: Int
   row_id: Int
   i18n: String
-  created_at: String!
-  updated_at: String!
+  created_at: Date!
+  updated_at: Date!
   created_since: String!
   blocks: [Block]
 }

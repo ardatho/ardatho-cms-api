@@ -15,7 +15,9 @@ export default {
       info
     ): Promise<Role[]> {
       const roleModel = new RoleModel(contextValue.lang);
-      return roleModel.getItems(queryInput);
+      const roles = await roleModel.getItems(queryInput);
+      console.log({roles});
+      return roles;
     },
     async nroles(
       parent,
@@ -32,9 +34,6 @@ export default {
     },
   },
   Role: {
-    created_at(parent: User, args, contextValue: GraphqlContext, info): string {
-      return new Date(parent.created_at).toISOString();
-    },
     created_since(parent: User, args, contextValue: GraphqlContext, info): string {
       return DateKit.fromNow(new Date(parent.created_at), contextValue.lang, true);
     },

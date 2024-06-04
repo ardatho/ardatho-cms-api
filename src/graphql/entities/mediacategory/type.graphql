@@ -9,8 +9,8 @@ type Mediacategory {
   nParent: Int
   nMediacategories: Int
   parents: [MediacategoryParents]
-  created_at: String!
-  updated_at: String!
+  created_at: Date!
+  updated_at: Date!
   created_since: String!
 }
 type MediacategoryParents {

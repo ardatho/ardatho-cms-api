@@ -56,12 +56,6 @@ export default {
     },
   },
   User: {
-    created_at(parent: User, args, contextValue: GraphqlContext, info): string {
-      return new Date(parent.created_at).toISOString();
-    },
-    updated_at(parent: User, args, contextValue: GraphqlContext, info): string {
-      return new Date(parent.updated_at).toISOString();
-    },
     created_since(parent: User, args, contextValue: GraphqlContext, info): string {
       return DateKit.fromNow(new Date(parent.created_at), contextValue.lang, true);
     },

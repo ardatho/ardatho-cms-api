@@ -12,8 +12,8 @@ type Page {
   parent_id: Int
   page_type: String
   i18n: String
-  created_at: String!
-  updated_at: String!
+  created_at: Date!
+  updated_at: Date!
   created_since: String!
   nParent: Int
   nPages: Int
