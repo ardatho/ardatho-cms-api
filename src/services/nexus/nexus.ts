@@ -17,10 +17,12 @@ interface NexusItem<T> {
 class Nexus<T> implements NexusItem<T> {
   public readonly query;
   public readonly config;
+  public readonly lang: string;
 
-  constructor(config: NexusConfig) {
+  constructor(config: NexusConfig, lang = 'en') {
     this.query = knex<T>(config.table);
     this.config = config;
+    this.lang = lang;
   }
 
   public getItemsQuery(queryInput: QueryInput, all = false) {
@@ -40,6 +42,34 @@ class Nexus<T> implements NexusItem<T> {
     if (queryInput.filter) {
       this.query.where((builder) => QueryService.filterQuery(queryInput.filter, builder));
     }
+  }
+
+  public async getItems(queryInput: QueryInput): Promise<T[]> {
+    this.getItemsQuery(queryInput);
+    const items = await this.query.select();
+    for (const item of items) {
+      for (const i18nField of this.config.i18nFields) {
+        item[i18nField] = item[i18nField] ? item[i18nField][this.lang] : null;
+      }
+    }
+    return items;
+  }
+
+  public async countItems(queryInput: QueryInput): Promise<{ count: number }> {
+    this.getItemsQuery(queryInput, true)
+    const results = await this.query.count({ count: '*' });
+    return { count: results[0].count };
+  }
+
+  public async getItem(id: number): Promise<T> {
+    this.query.where('id', id);
+    const results = await this.query.select();
+    const item = results[0];
+    if (!item) return null;
+    for (const i18nField of this.config.i18nFields) {
+      item[i18nField] = item[i18nField] ? item[i18nField][this.lang] : null;
+    }
+    return item;
   }
 }
 
